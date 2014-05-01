@@ -25,7 +25,8 @@ exports.result = function(req) {
         console.log("Got result avg=" + req.data.average + " (dseq=" + req.data.seq + ")");
         userdb.set_latency(req.session.id, req.data.average);       
         userdb.add_seq(req.session.id);
-        //userdb.print_results(req.session.id);
+
+        userdb.print_results(req.session.id);
     }
 };
 

@@ -10,4 +10,4 @@ block content
         br
         a(href='/results') Get results
         br
-        a#cleardata(href='#') Clear data
+        a(href='#') Clear data
