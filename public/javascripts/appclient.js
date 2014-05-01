@@ -17,11 +17,9 @@ var start_ping = function() {
         socket.emit('ping', {timestamp: Date.now(), seq : x});
     }
 
-    stat.html("<p>Waiting for response from server...</p>");
     // receive and log pongs
     socket.on('pong', function(data) {
         var rtt = Date.now() - data.timestamp;
-
         if (data.seq == pongseq) {
             console.log("received pong " + pongseq + ": rTT=" + rtt);
             arr[pongseq] = rtt;
@@ -30,10 +28,11 @@ var start_ping = function() {
     });
 
     // calculate average
-    stat.html("<p>Computing average RTT...</p>");
+    stat.html("<p>Waiting for response from server...</p>");
     var avg=-1;
     socket.on('done', function(data) {
         if (data.seq == dseq) {
+            stat.html("<p>Computing average RTT...</p>");
             avg = average(arr);
             console.log("received done (dseq=" + dseq + ")");
             console.log("average RTT (ms): " + avg);
