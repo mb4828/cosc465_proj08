@@ -54,6 +54,8 @@ var resapp = (function(){
 
     return {
         init: function() {
+            socket = io.connect();
+
             console.log("Result app starting");
             //$('#results').ready(get_results);
             jQuery("#res").click(get_results);
