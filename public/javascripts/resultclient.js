@@ -10,7 +10,6 @@ function average(arr) {
 function make_table(data) {
     console.log("making table");
     var resdiv = $('#results');
-    resdiv.html("<p><i>One moment please...</i></p>");
 
     if (data.latency_results[0] == undefined) {
         resdiv.text("No data. Try running some tests!");
@@ -38,6 +37,7 @@ function make_table(data) {
 }
 
 var get_results = function() {
+    $('#results').html("<p><i>One moment please...</i></p>");
     socket.emit('getres', '');
     socket.on('dta', function(data) {
         console.log("got data");
@@ -54,9 +54,9 @@ var resapp = (function(){
 
     return {
         init: function() {
+            console.log("Result app starting");
             socket = io.connect();
 
-            console.log("Result app starting");
             //$('#results').ready(get_results);
             jQuery("#res").click(get_results);
             jQuery("#cleardata").click(clear_data);
